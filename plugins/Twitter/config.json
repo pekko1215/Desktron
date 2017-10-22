@@ -1,0 +1,12 @@
+{
+	"consumerKey":"cEt5VnB3sEX8ekNnE1lu20nFg",
+	"consumerKeySecret":"ZoR54hRsOR9frCgiunuM4zfI4yIMEzlCZHf5a3UWF0mV5cSJdv",
+	"message":{
+		"inputPIN":"PIN番号を入力してください。",
+		"oAuthed":"認証されました。",
+		"favorite":"%fromさんが、ツイートをお気に入りしました。",
+		"favoriteCss":{
+			"fontSize":"10pt"
+		}
+	}
+}

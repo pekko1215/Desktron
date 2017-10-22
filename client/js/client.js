@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 11:00:08 by anonymous         #+#    #+#             */
-/*   Updated: 2017/10/21 17:34:00 by anonymous        ###   ########.fr       */
+/*   Updated: 2017/10/22 19:53:20 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 const { remote } = require('electron');
@@ -38,7 +38,7 @@ $(() => {
     WindowResize()
     observer.observe(document.body, { childList: true, attributes: true, subtree: true })
 
-    function pushMessage(el) {
+    function pushMessage(el, timer = false) {
         var messageDiv = $("<p></p>");
         messageDiv.addClass("left_balloon")
         if (typeof el === "string") {
@@ -60,24 +60,29 @@ $(() => {
         })
         var index = Messages.push(messageDiv) - 1;
         messageDiv.fadeIn(clientConfig.message.visibleTime)
-        if (Messages.length > clientConfig.message.max) {
-            var d = Messages.shift();
-            d.fadeOut(clientConfig.message.visibleTime, () => {
-                d.remove()
-            });
-        }
+        var tm;
         messageDiv._index = index;
         messageDiv._uid = getUniqueStr()
+        if (!timer) {
+            timer = clientConfig.message.timer;
+            tm = setTimeout(() => {
+                deleteMessage(messageDiv)
+            }, timer)
+        }
+        if (Messages.length > clientConfig.message.max) {
+            !tm && clearTimeout(tm)
+            deleteMessage(messageDiv)
+        }
         return messageDiv;
     }
 
     function deleteMessage(d) {
         var index = d._index
-        if(!Messages[index]||Messages[index]._uid!==d._uid){return}
+        if (!Messages[index] || Messages[index]._uid !== d._uid) { return }
         Messages[index].fadeOut(clientConfig.message.visibleTime, () => {
-            Messages[index].remove()
+            Messages[index] && Messages[index].remove()
+            Messages.splice(index, 1)
         })
-        Messages.splice(index, 1)
     }
 
     $($MenuButton).on('click', (event) => {
@@ -93,6 +98,7 @@ $(() => {
                 return plugin.menu();
             })
         }
+        console.log(menu)
         Menu.buildFromTemplate(menu).popup()
     });
 
@@ -101,7 +107,9 @@ $(() => {
             $: $,
             pushMessage: pushMessage,
             deleteMessage: deleteMessage,
-            Messages: Messages
+            Messages: Messages,
+            localStorage: localStorage,
+            remote: remote
         }
         fs.readdir("./plugins/", (err, files) => {
             if (err) throw err;

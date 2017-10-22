@@ -3,7 +3,8 @@
 		"top":176,
 		"left":4,
 		"visibleTime":100,
-		"max":3
+		"max":3,
+		"timer":5000
 	},
 	"menu":{
 		"timer":300
