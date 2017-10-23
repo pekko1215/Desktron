@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 11:00:08 by anonymous         #+#    #+#             */
-/*   Updated: 2017/10/22 19:53:20 by anonymous        ###   ########.fr       */
+/*   Updated: 2017/10/23 22:10:00 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 const { remote } = require('electron');
@@ -78,11 +78,24 @@ $(() => {
 
     function deleteMessage(d) {
         var index = d._index
-        if (!Messages[index] || Messages[index]._uid !== d._uid) { return }
-        Messages[index].fadeOut(clientConfig.message.visibleTime, () => {
-            Messages[index] && Messages[index].remove()
-            Messages.splice(index, 1)
+        var max = 0;
+        window.Messages = Messages
+        Messages.forEach((m, i) => {
+            if (m._uid === d._uid) {
+                d.fadeOut(clientConfig.message.visibleTime, () => {
+                    d.remove();
+                })
+                console.log(Messages)
+                Messages.splice(i, 1)
+                console.log(Messages)
+            } else {
+                var l = clientConfig.message.left + m.width() + 14 + 16 + 15
+                max = max < l ? l : max;
+            }
         })
+        MesMaxwidth = max + mainImg.width();
+        console.log(MesMaxwidth)
+        WindowResize()
     }
 
     $($MenuButton).on('click', (event) => {
