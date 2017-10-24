@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 11:00:08 by anonymous         #+#    #+#             */
-/*   Updated: 2017/10/23 22:10:00 by anonymous        ###   ########.fr       */
+/*   Updated: 2017/10/24 16:31:39 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 const { remote } = require('electron');
@@ -26,10 +26,15 @@ $(() => {
     const $MenuButton = $("#MenuButton")
     var Plugins = [];
     var Messages = [];
-    var MesMaxwidth = mainImg.width()
+    var MesMaxwidth = 0
 
     function WindowResize() {
-        resizeTo(MesMaxwidth + 100, mainImg.height())
+        // resizeTo(MesMaxwidth + 100, mainImg.height())
+
+        // console.log($().height
+        // $('body').css("background-color","green")
+
+        resizeTo($('body').width() + MesMaxwidth,$('body').height());
     }
 
     const observer = new MutationObserver((MutaionRecords, MutaionObserver) => {
@@ -49,7 +54,7 @@ $(() => {
         messageDiv.css({ top: clientConfig.message.top, left: mainImg.width() + clientConfig.message.left })
         messageDiv.hide();
         $Mascot.append(messageDiv)
-        var l = mainImg.width() + clientConfig.message.left + messageDiv.width() + 14 + 16 + 15
+        var l = clientConfig.message.left + messageDiv.width() + 14 + 16 + 15
         MesMaxwidth = MesMaxwidth < l ? l : MesMaxwidth;
         WindowResize()
 
@@ -85,33 +90,39 @@ $(() => {
                 d.fadeOut(clientConfig.message.visibleTime, () => {
                     d.remove();
                 })
-                console.log(Messages)
                 Messages.splice(i, 1)
-                console.log(Messages)
             } else {
                 var l = clientConfig.message.left + m.width() + 14 + 16 + 15
                 max = max < l ? l : max;
             }
         })
-        MesMaxwidth = max + mainImg.width();
+        MesMaxwidth = max;
         console.log(MesMaxwidth)
         WindowResize()
     }
 
-    $($MenuButton).on('click', (event) => {
+    $MenuButton.on('click', (event) => {
         event.preventDefault();
         var menu = [{
-            label: "プラグイン",
-            submenu: [{
-                label: "なし"
-            }]
-        }];
+                label: "プラグイン",
+                submenu: [{
+                    label: "なし"
+                }]
+            },
+            {
+                label: "再読み込み",
+                role: 'reload'
+            },
+            {
+                label: "終了",
+                role: 'quit'
+            }
+        ];
         if (Plugins.length != 0) {
             menu[0].submenu = Plugins.map((plugin) => {
                 return plugin.menu();
             })
         }
-        console.log(menu)
         Menu.buildFromTemplate(menu).popup()
     });
 
