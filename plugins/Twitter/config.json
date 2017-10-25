@@ -1,12 +1,19 @@
 {
-	"consumerKey":"cEt5VnB3sEX8ekNnE1lu20nFg",
-	"consumerKeySecret":"ZoR54hRsOR9frCgiunuM4zfI4yIMEzlCZHf5a3UWF0mV5cSJdv",
-	"message":{
-		"inputPIN":"PIN番号を入力してください。",
-		"oAuthed":"認証されました。",
-		"favorite":"%fromさんが、ツイートをお気に入りしました。",
-		"favoriteCss":{
-			"fontSize":"10pt"
+	"consumerKey": "USzpUIRSbH9s4Q4x1xc3gDY07",
+	"consumerKeySecret": "UzM4bc5mXn37gSGGU9QjFUEhyf5b7ALrxQq0tR5DzB61oN41Aj",
+	"message": {
+		"inputPIN": "PIN番号を入力してね。",
+		"oAuthed": "認証出来たよ。",
+		"inputtweet": "ツイート内容を入力してね。",
+		"tweeted": "ツイートが完了したよ。",
+		"favorite": "%fromさんが、ツイートをお気に入りしたよ。",
+		"tweet": "%from",
+		"messageCss": {
+			"fontSize": "10pt"
+		},
+		"ui": {
+			"set": "セット",
+			"cancel": "キャンセル"
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 11:00:08 by anonymous         #+#    #+#             */
-/*   Updated: 2017/10/24 16:31:39 by anonymous        ###   ########.fr       */
+/*   Updated: 2017/10/25 18:43:47 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 const { remote } = require('electron');
@@ -84,7 +84,6 @@ $(() => {
     function deleteMessage(d) {
         var index = d._index
         var max = 0;
-        window.Messages = Messages
         Messages.forEach((m, i) => {
             if (m._uid === d._uid) {
                 d.fadeOut(clientConfig.message.visibleTime, () => {

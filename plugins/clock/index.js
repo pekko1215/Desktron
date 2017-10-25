@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 15:21:21 by anonymous         #+#    #+#             */
-/*   Updated: 2017/10/24 16:34:18 by anonymous        ###   ########.fr       */
+/*   Updated: 2017/10/25 14:08:48 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 module.exports = function Clock(handler, config) {
@@ -20,6 +20,14 @@ module.exports = function Clock(handler, config) {
 
     $('#Clock').bind('contextmenu', (e) => { $("#MenuButton").trigger('click', e) });
     $('#MenuButton').hide()
+
+    var that = this;
+
+    $('#Clock').hover(function() {
+        $(this).css(that.config.hover);
+    }, function() {
+        $(this).css(that.config.css);
+    });
 }
 
 module.exports.prototype.menu = function() {

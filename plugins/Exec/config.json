@@ -1,0 +1,10 @@
+{
+	"label":"Exec",
+	"menu":
+	[
+		{
+			"label":"Ikotoba",
+			"click":"./Plugins/Exec/a.exe"
+		}
+	]
+}

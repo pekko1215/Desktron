@@ -2,11 +2,15 @@
     "css":
     {
         "top": "1px",
-        "background": "#fff",
+        "background": "rgba(200,250,200,0.1)",
         "border": "2 px solid #999",
         "padding": "10px",
         "border-radius": "5px",
         "clear": "both",
-        "user-select": "none"
+        "user-select": "none",
+        "fontFamily":"Fsb09ChihuahuaBoldAl"
+    },
+    "hover":{
+        "background": "rgba(200,250,200,0.8)"
     }
 }

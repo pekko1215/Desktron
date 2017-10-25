@@ -1,0 +1,10 @@
+{
+	"search":{
+		"message":"精霊を検索します。",
+		"css":{
+			"font-size":"7pt"
+		}
+	},
+	"question":{
+	}
+}
