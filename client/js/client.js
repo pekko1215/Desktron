@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 11:00:08 by anonymous         #+#    #+#             */
-/*   Updated: 2017/10/25 18:43:47 by anonymous        ###   ########.fr       */
+/*   Updated: 2017/10/27 13:20:33 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 const { remote } = require('electron');
@@ -15,7 +15,7 @@ const fs = require('fs');
 const win = remote.getCurrentWindow();
 window.$ = window.jQuery = require('jquery');
 win.toggleDevTools()
-
+win.removeAllListeners();
 const clientConfig = require('../config/client.json')
 
 

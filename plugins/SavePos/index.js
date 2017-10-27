@@ -8,7 +8,7 @@ module.exports = function SavePos(handler, config) {
         window.moveTo(...pos);
     }
     win.on('move', function(){
-        handler.localStorage.setItem("windowPosition", JSON.stringify(win.getPosition()));
+        handler.localStorage.setItem("windowPosition", JSON.stringify([window.screenX,window.screenY]));
     })
 }
 
